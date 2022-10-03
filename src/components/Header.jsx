@@ -1,13 +1,12 @@
 import { useLocation } from "react-router-dom";
-import Navbar from "./Navigation/Navbar";
+import capitalizeString from "../util/capitalizeString";
 
 const Header = () => {
 	const { pathname } = useLocation();
 
 	return (
-		<header>
-			<Navbar />
-			<h1>{pathname.replace("/", "")}</h1>
+		<header className="pb-4">
+			<h1 className="text-xl">{capitalizeString(pathname.replace("/", ""))}</h1>
 		</header>
 	);
 };

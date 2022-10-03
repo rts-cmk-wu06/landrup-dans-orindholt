@@ -13,15 +13,18 @@ module.exports = {
 			content: {
 				none: "''",
 			},
-			keyframes: {
-				fadeIn: {
-					"0%": { opacity: 0 },
-					"100%": { opacity: 1 },
-				},
+			boxShadow: {
+				base: "3px 4px 4px rgba(0, 0, 0, 0.25)",
 			},
-			animation: {
-				fadeIn: "fadeIn 1s 1500ms linear forwards",
+		},
+		keyframes: {
+			fadeIn: {
+				"0%": { opacity: 0 },
+				"100%": { opacity: 1 },
 			},
+		},
+		animation: {
+			fadeIn: "fadeIn 1s 1500ms linear forwards",
 		},
 		fontFamily: {
 			ubuntu: "'Ubuntu', 'Roboto', 'Racing Sans One', sans-serif",

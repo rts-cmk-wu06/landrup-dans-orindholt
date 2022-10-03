@@ -13,10 +13,10 @@ const Welcome = () => {
 					<img src={logo} alt="Landrup Dans Logo" />
 				</div>
 				<GenericButton
-					anchor="/activities"
+					anchor="/aktiviteter"
 					text="Kom i gang"
 					style={{ opacity: 0 }}
-					className="mx-auto animate-fadeIn"
+					className="mx-auto animate-fadeIn shadow-base"
 				/>
 			</div>
 		</div>

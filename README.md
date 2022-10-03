@@ -77,6 +77,7 @@ Netlify - _Forbundet til Github således at når man pusher til det forbundet re
 ### API Testing
 
 Insomnia - XXXX
+![Insomnia Screenshot 01](materials/markdown/insomnia_01.png)
 
 ## Udvalgt kode til vudering
 
