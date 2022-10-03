@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Activities from "./pages/Activities";
 import AcitivityDetail from "./pages/ActivityDetails";
+import Search from "./pages/Search";
 import Welcome from "./pages/Welcome";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
 						<Route path="/" element={<Welcome />} />
 						<Route path="/aktiviteter" element={<Activities />} />
 						<Route path="/aktiviteter/:id" element={<AcitivityDetail />} />
+						<Route path="/soeg" element={<Search />} />
 					</Routes>
 				</Layout>
 			</Router>

@@ -9,7 +9,7 @@ const Activities = () => {
 
 	return (
 		<>
-			<ul className="flex flex-col gap-8">
+			<ul className="flex flex-col gap-8 py-4">
 				{data.map(activity => {
 					return <Activity key={activity.id} activity={activity} />;
 				})}

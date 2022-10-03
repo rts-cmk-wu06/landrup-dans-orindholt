@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const SearchButton = () => {
+const SearchButton = ({ to = "/" }) => {
 	return (
-		<Link to="/search">
+		<Link to={to}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="41"

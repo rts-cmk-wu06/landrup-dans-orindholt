@@ -8,13 +8,13 @@ const Footer = () => {
 			<nav className="my-auto w-full px-8">
 				<ul className="flex justify-between">
 					<li>
-						<HomeButton />
+						<HomeButton to="/aktiviteter" />
 					</li>
 					<li>
-						<SearchButton />
+						<SearchButton to="/soeg" />
 					</li>
 					<li>
-						<CalenderButton />
+						<CalenderButton to="/kalender" />
 					</li>
 				</ul>
 			</nav>

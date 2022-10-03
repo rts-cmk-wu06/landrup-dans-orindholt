@@ -5,8 +5,10 @@ const Header = () => {
 	const { pathname } = useLocation();
 
 	return (
-		<header className="pb-4">
-			<h1 className="text-xl">{capitalizeString(pathname.replace("/", ""))}</h1>
+		<header>
+			<h1 className="text-xl">
+				{capitalizeString(pathname.replace("/", "")).replace(/oe/i, "ø")}
+			</h1>
 		</header>
 	);
 };

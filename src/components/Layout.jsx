@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
 			<main
 				className={`min-h-screen flex flex-col ${
 					headerCondition ? "px-7 py-8" : ""
-				}`}
+				} ${footerCondition ? "!pb-16" : ""}`}
 			>
 				{headerCondition && <Header />}
 				{children}
