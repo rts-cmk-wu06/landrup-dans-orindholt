@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import acitvityAge from "../../util/activityAge";
 
 const Activity = ({
 	activity: {
@@ -10,11 +11,6 @@ const Activity = ({
 		maxAge,
 	},
 }) => {
-	const acitvityAge = (min, max) => {
-		if (max >= 100) return `${min}+ år`;
-		return `${min} - ${max} år`;
-	};
-
 	return (
 		<li className="w-auto h-full aspect-square rounded-[2.5rem] rounded-br-none overflow-hidden">
 			<Link to={`/aktiviteter/${id}`}>

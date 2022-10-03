@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 import Header from "./Header";
 import { useLocation } from "react-router-dom";
 
@@ -16,13 +16,13 @@ const Layout = ({ children }) => {
 		<>
 			<main
 				className={`min-h-screen flex flex-col ${
-					footerCondition ? "px-7 py-8" : ""
+					headerCondition ? "px-7 py-8" : ""
 				}`}
 			>
 				{headerCondition && <Header />}
 				{children}
 			</main>
-			{headerCondition && <Footer />}
+			{footerCondition && <Footer />}
 		</>
 	);
 };

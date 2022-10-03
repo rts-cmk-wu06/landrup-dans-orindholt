@@ -8,6 +8,7 @@ const useFetch = ({
 	endpoint = "/api/v1/",
 	method = "GET",
 	authToken = "",
+	fetchOnInit = true,
 }) => {
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
@@ -36,7 +37,7 @@ const useFetch = ({
 	};
 
 	useEffect(() => {
-		if (method === "GET" && !error) {
+		if (fetchOnInit && !error) {
 			callback();
 		}
 	}, [endpoint, method]);
