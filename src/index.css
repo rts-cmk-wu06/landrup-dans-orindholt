@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply font-ubuntu text-base max-w-sm mx-auto;
+    @apply font-ubuntu text-base max-w-[410px] mx-auto bg-purple text-white;
   }
 }

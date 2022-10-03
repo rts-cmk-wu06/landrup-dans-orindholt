@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 import Header from "./Header";
 import { useLocation } from "react-router-dom";
 
@@ -7,20 +7,22 @@ const Layout = ({ children }) => {
 
 	if (!pathname) return null;
 
-	const locationCondition = pathname !== "/";
-	console.log(locationCondition);
+	const footerCondition = pathname !== "/" && pathname !== "login";
+	const headerCondition = footerCondition && !pathname.includes("aktiviteter/");
+
+	console.log(headerCondition);
 
 	return (
 		<>
-			{locationCondition && <Header />}
 			<main
 				className={`min-h-screen flex flex-col ${
-					locationCondition ? "pt-12" : ""
+					headerCondition ? "px-7 py-8" : ""
 				}`}
 			>
+				{headerCondition && <Header />}
 				{children}
 			</main>
-			{locationCondition && <Footer />}
+			{footerCondition && <Footer />}
 		</>
 	);
 };
