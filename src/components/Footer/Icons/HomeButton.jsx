@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const HomeButton = () => {
+const HomeButton = ({ to = "/" }) => {
 	return (
-		<Link to="/aktiviteter">
+		<Link to={to}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="41"

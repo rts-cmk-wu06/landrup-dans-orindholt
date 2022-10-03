@@ -20,7 +20,7 @@ const AcitivityDetail = () => {
 
 	return (
 		<>
-			<div className="relative flex-2 grid">
+			<div className="relative flex-3 grid">
 				<img
 					src={assetUrl}
 					alt={assetId}
