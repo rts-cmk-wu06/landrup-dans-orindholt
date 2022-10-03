@@ -13,11 +13,33 @@ module.exports = {
 			content: {
 				none: "''",
 			},
-			colors: {
-				gray: "#EAEAEA",
-				purple: "#5E2E53",
-				pink: "#E1A1E9",
+			keyframes: {
+				fadeIn: {
+					"0%": { opacity: 0 },
+					"100%": { opacity: 1 },
+				},
 			},
+			animation: {
+				fadeIn: "fadeIn 1s 1500ms linear forwards",
+			},
+		},
+		fontFamily: {
+			ubuntu: "'Ubuntu', 'Roboto', 'Racing Sans One', sans-serif",
+			roboto: "'Roboto', 'Ubuntu', 'Racing Sans One', sans-serif",
+			"racing-sans-one": "'Racing Sans One', 'Ubuntu', 'Roboto', cursive",
+		},
+		colors: {
+			white: "#FFFFFF",
+			black: "#000000",
+			gray: "#EAEAEA",
+			purple: "#5E2E53",
+			pink: "#E1A1E9",
+			transparent: "transparent",
+		},
+		fontSize: {
+			base: "1.125rem",
+			lg: "1.5rem",
+			xl: "2.25rem",
 		},
 	},
 	plugins: [],
