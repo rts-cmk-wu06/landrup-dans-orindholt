@@ -20,7 +20,7 @@ const AcitivityDetail = () => {
 
 	return (
 		<>
-			<div className="relative flex-3 grid">
+			<div className="relative flex-1 grid">
 				<img
 					src={assetUrl}
 					alt={assetId}
@@ -31,7 +31,7 @@ const AcitivityDetail = () => {
 					text="Tilmeld"
 				/>
 			</div>
-			<div className="px-7 py-5 flex-4">
+			<div className="px-7 py-5 flex-5">
 				<h2 className="text-lg leading-none">{name}</h2>
 				<p>{acitvityAge(minAge, maxAge)}</p>
 				<p className="mt-2">{description}</p>
