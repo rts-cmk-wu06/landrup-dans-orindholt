@@ -13,7 +13,11 @@ const Layout = ({ children }) => {
 	return (
 		<>
 			{locationCondition && <Header />}
-			<main className={`min-h-screen ${locationCondition ? "pt-12" : ""}`}>
+			<main
+				className={`min-h-screen flex flex-col ${
+					locationCondition ? "pt-12" : ""
+				}`}
+			>
 				{children}
 			</main>
 			{locationCondition && <Footer />}
