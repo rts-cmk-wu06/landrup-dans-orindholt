@@ -43,6 +43,7 @@ module.exports = {
 			base: "1.125rem",
 			lg: "1.5rem",
 			xl: "2.25rem",
+			"2xl": "3rem",
 		},
 	},
 	plugins: [],
