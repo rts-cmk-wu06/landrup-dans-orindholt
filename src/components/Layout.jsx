@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 const Layout = ({ children }) => {
 	const { pathname } = useLocation();
 
-	const footerCondition = pathname !== "/" && pathname !== "login";
+	const footerCondition = pathname !== "/" && pathname !== "/login";
 
 	return (
 		<>

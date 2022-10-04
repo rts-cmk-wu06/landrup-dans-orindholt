@@ -20,20 +20,19 @@ const AcitivityDetail = () => {
 
 	return (
 		<>
-			<div className="relative flex-2 grid">
-				<div className="h-full">
-					<img
-						src={assetUrl}
-						alt={assetId}
-						className="h-full object-cover object-center"
-					/>
-				</div>
+			<div className="relative grid h-[60vh] overflow-hidden">
+				<img
+					src={assetUrl}
+					alt={assetId}
+					className="w-full h-full object-cover object-center"
+				/>
 				<GenericButton
 					className="absolute bottom-6 right-6 shadow-base"
 					text="Tilmeld"
+					anchor="/login"
 				/>
 			</div>
-			<div className="px-7 py-5 flex-1">
+			<div className="px-7 py-5 h-full">
 				<h2 className="text-lg leading-none">{name}</h2>
 				<p>{acitvityAge(minAge, maxAge)}</p>
 				<p className="mt-2">{description}</p>
