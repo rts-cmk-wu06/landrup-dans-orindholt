@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-ubuntu text-base max-w-[410px] mx-auto bg-purple text-white;
+  }
+}
+
+@layer components {
+  .background-overlay {
+    @apply relative overflow-hidden after:h-[120vh] after:w-[115vw] after:rotate-[60deg] after:bg-purple after:bg-opacity-50 after:absolute after:-top-32 after:bottom-0 after:left-0 after:right-0
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 10px #00000090;
+  }
+}
