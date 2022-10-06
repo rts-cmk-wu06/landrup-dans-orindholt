@@ -4,12 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { object, string, boolean } from "yup";
 import useFetch from "../hooks/useFetch";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Loader from "../components/Loader";
 import { userContext } from "../util/UserContext";
 import { useNavigate } from "react-router-dom";
 import LoginInput from "../components/Login/LoginInput";
 import { toast } from "react-toastify";
+import { useCookies } from "react-cookie";
 
 const validationSchema = object({
 	username: string().required("You need to enter a username"),
@@ -18,6 +19,7 @@ const validationSchema = object({
 });
 
 const Login = () => {
+	const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
 	const navigate = useNavigate();
 	const {
 		userData: { set: setUserData },
@@ -44,13 +46,15 @@ const Login = () => {
 
 	const submitHandler = async formData => {
 		const { username, password, rememberMe } = formData;
-		if (rememberMe) console.log("Cookies!");
 		const userData = await attemptLogin({ username, password });
 		if (userData?.error || !userData?.data) return;
 		document.activeElement.blur();
-		// Cookie Implementation
-		// ....
-		console.log(formData);
+
+		// Cookies
+		if (rememberMe) {
+			setCookie("user-data", userData.data, { path: "/" });
+		} else if (cookies["user-data"]) removeCookie("user-data", { path: "/" });
+
 		reset();
 		setUserData(userData.data);
 		toast.success(`Velkommen tilbage ${formData.username}!`);
