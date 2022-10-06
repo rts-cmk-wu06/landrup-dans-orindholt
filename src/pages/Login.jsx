@@ -7,10 +7,10 @@ import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import Loader from "../components/Loader";
 import { userContext } from "../util/UserContext";
-import { useNavigate } from "react-router-dom";
 import LoginInput from "../components/Login/LoginInput";
 import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
+import BackButton from "../components/BackButton";
 
 const validationSchema = object({
 	username: string().required("You need to enter a username"),
@@ -20,7 +20,6 @@ const validationSchema = object({
 
 const Login = () => {
 	const [cookies, setCookie, removeCookie] = useCookies(["user-data"]);
-	const navigate = useNavigate();
 	const {
 		userData: { set: setUserData },
 	} = useContext(userContext);
@@ -69,13 +68,7 @@ const Login = () => {
 				className="h-screen bg-cover bg-center grid place-content-center background-overlay"
 				style={{ backgroundImage: `url(${background})` }}
 			>
-				<button
-					type="button"
-					className="absolute top-0 left-6 text-2xl"
-					onClick={() => navigate("/aktiviteter")}
-				>
-					&larr;
-				</button>
+				<BackButton />
 				<div className="z-10 flex flex-col items-center relative pb-10">
 					<h1 className="text-2xl mr-auto">Login</h1>
 					<form

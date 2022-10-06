@@ -5,6 +5,7 @@ import AcitivityDetail from "./pages/ActivityDetails";
 import Calender from "./pages/Calender";
 import CalenderDetail from "./pages/CalenderDetail";
 import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import Welcome from "./pages/Welcome";
 import UserContextProvider from "./util/UserContext";
@@ -23,6 +24,7 @@ const App = () => {
 							<Route path="/kalender" element={<Calender />} />
 							<Route path="/kalender/:id" element={<CalenderDetail />} />
 							<Route path="/login" element={<Login />} />
+							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</Layout>
 				</Router>
