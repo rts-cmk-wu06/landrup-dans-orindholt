@@ -45,17 +45,22 @@ const Login = () => {
 
 	const submitHandler = async formData => {
 		const { username, password, rememberMe } = formData;
-		const userData = await attemptLogin({ username, password });
-		if (userData?.error || !userData?.data) return;
-		document.activeElement.blur();
+		const loginResponse = await attemptLogin({ username, password });
 
+		if (loginResponse?.error || !loginResponse?.data) return;
+
+		document.activeElement.blur();
 		// Cookies
 		if (rememberMe) {
-			setCookie("user-data", userData.data, { path: "/" });
-		} else if (cookies["user-data"]) removeCookie("user-data", { path: "/" });
+			setCookie("user-data", loginResponse.data, {
+				path: "/",
+				expires: new Date(loginResponse.data.validUntil),
+				sameSite: "lax",
+			});
+		} else if (cookies["user-data"]) removeCookie("user-data");
 
 		reset();
-		setUserData(userData.data);
+		setUserData(loginResponse.data);
 		toast.success(`Velkommen tilbage ${formData.username}!`);
 	};
 
