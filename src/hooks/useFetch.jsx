@@ -28,11 +28,13 @@ const useFetch = ({
 				setData(res.data);
 				setError(null);
 				setIsLoading(false);
+				return { ...res, error: false };
 			})
 			.catch(err => {
 				setData(null);
 				setError(err);
 				setIsLoading(false);
+				return { ...err, error: true };
 			});
 	};
 

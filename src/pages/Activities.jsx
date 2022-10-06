@@ -8,6 +8,7 @@ const Activities = () => {
 	const { data } = useFetch({ endpoint: "/api/v1/activities" });
 
 	if (!data) return <Loader />;
+
 	return (
 		<>
 			<Section>

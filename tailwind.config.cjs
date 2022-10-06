@@ -37,6 +37,7 @@ module.exports = {
 			gray: "#EAEAEA",
 			purple: "#5E2E53",
 			pink: "#E1A1E9",
+			error: "#eb4236",
 			transparent: "transparent",
 		},
 		fontSize: {

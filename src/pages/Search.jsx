@@ -19,9 +19,7 @@ const Search = () => {
 		keys: ["name"],
 	});
 
-	const computedData = Boolean(fuse.search(searchValue).length)
-		? fuse.search(searchValue).map(item => item.item)
-		: data;
+	const searchData = fuse.search(searchValue).map(item => item.item);
 
 	return (
 		<>
@@ -30,7 +28,14 @@ const Search = () => {
 				<div className="mb-6">
 					<SearchField value={searchValue} setValue={setSearchValue} />
 				</div>
-				<ActivityList data={computedData} />
+				{(searchValue && searchData.length) || !searchValue ? (
+					<ActivityList data={Boolean(searchData.length) ? searchData : data} />
+				) : (
+					<p className="text-center">
+						Der blev ikke fundet nogle aktiviteter.
+						<br /> Prøv at søge efter noget andet.
+					</p>
+				)}
 			</Section>
 		</>
 	);

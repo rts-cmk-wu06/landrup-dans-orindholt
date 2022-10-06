@@ -9,23 +9,21 @@ import { userContext } from "../util/UserContext";
 const CalenderDetail = () => {
 	const { id } = useParams();
 	const {
-		userData: {
-			get: { userId, token },
-		},
+		userData: { get: userData },
 	} = useContext(userContext);
 
-	const { data } = useFetch({
-		endpoint: `/api/v1/users/${userId}/roster/${id}`,
+	const { data: rosterData } = useFetch({
+		endpoint: `/api/v1/users/${userData?.userId}/roster/${id}`,
 		authToken: token,
 	});
 
-	if (!data) return <Loader />;
+	if (!rosterData) return <Loader />;
 
 	return (
 		<Section>
-			<MainHeading text={data[0].activity} />
+			<MainHeading text={rosterData[0].activity} />
 			<ul>
-				{data.map(({ firstname, lastname }, i) => {
+				{rosterData.map(({ firstname, lastname }, i) => {
 					return <li key={i}>{`${firstname} ${lastname}`}</li>;
 				})}
 			</ul>

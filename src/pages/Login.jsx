@@ -2,16 +2,18 @@ import GenericButton from "../components/GenericButton";
 import background from "../assets/splash-image.jpg";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { object, string } from "yup";
+import { object, string, boolean } from "yup";
 import useFetch from "../hooks/useFetch";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Loader from "../components/Loader";
 import { userContext } from "../util/UserContext";
 import { useNavigate } from "react-router-dom";
+import LoginInput from "../components/Login/LoginInput";
 
 const validationSchema = object({
 	username: string().required("You need to enter a username"),
 	password: string().required("You need to enter a password"),
+	rememberMe: boolean().optional(),
 });
 
 const Login = () => {
@@ -20,8 +22,8 @@ const Login = () => {
 	const {
 		userData: { set: setUserData },
 	} = useContext(userContext);
+
 	const {
-		data: apiData,
 		callback: attemptLogin,
 		isLoading,
 		error,
@@ -30,10 +32,10 @@ const Login = () => {
 		fetchOnInit: false,
 		method: "post",
 	});
+
 	const {
 		register,
 		handleSubmit,
-		watch,
 		reset,
 		formState: { errors },
 	} = useForm({
@@ -41,18 +43,18 @@ const Login = () => {
 	});
 
 	const submitHandler = async formData => {
-		await attemptLogin(formData);
+		// Cookie Implementation
+		// ....
+		const { username, password, rememberMe } = formData;
+		if (rememberMe) console.log("Cookies!");
+		const userData = await attemptLogin({ username, password });
+		if (userData?.error && userData?.data) return;
+		reset();
+		setUserData(userData.data);
+		setFormValidated(true);
 	};
 
-	useEffect(() => {
-		if (error) {
-			console.log(error?.code);
-		} else if (apiData && !error) {
-			reset();
-			setUserData(apiData);
-			setFormValidated(true);
-		}
-	}, [error, apiData]);
+	const isInvalid = error?.response?.status == 401;
 
 	return (
 		<>
@@ -70,7 +72,7 @@ const Login = () => {
 				<button
 					type="button"
 					className="absolute top-0 left-6 text-2xl"
-					onClick={() => navigate(-1)}
+					onClick={() => navigate("/aktiviteter")}
 				>
 					&larr;
 				</button>
@@ -82,26 +84,36 @@ const Login = () => {
 						</p>
 					)}
 					<form
-						className="flex flex-col items-center gap-5"
+						className="flex flex-col items-center gap-3"
 						onSubmit={handleSubmit(submitHandler)}
 					>
-						<input
-							{...register("username")}
+						<LoginInput
+							register={{ ...register("username") }}
+							error={errors.username || isInvalid ? true : false}
 							type="text"
-							aria-invalid={errors.username || error ? true : false}
 							placeholder="brugernavn"
-							className="h-12 px-4 bg-gray text-black"
+							autoComplete="username"
 						/>
-						<input
-							{...register("password")}
+						<LoginInput
+							register={{ ...register("password") }}
 							type="password"
-							aria-invalid={errors.password || error ? true : false}
+							error={errors.password || isInvalid ? true : false}
 							placeholder="adgangskode"
-							className="h-12 px-4 bg-gray text-black"
+							autoComplete="current-password"
 						/>
-						<GenericButton text="Login" type="submit" />
-						{(Boolean(Object.keys(errors).length) || error) && (
-							<p className="text-[#eb4236] absolute -bottom-4 text-center text-shadow">
+						<div className="flex gap-2 items-center w-full">
+							<input
+								{...register("rememberMe")}
+								type="checkbox"
+								id="remember-me"
+							/>
+							<label htmlFor="remember-me" className="leading-none select-none">
+								Remember me
+							</label>
+						</div>
+						<GenericButton text="Login" type="submit" className="mt-4" />
+						{(Boolean(Object.keys(errors).length) || isInvalid) && (
+							<p className="text-error absolute -bottom-4 text-center text-shadow">
 								{Object.values(errors)[0]?.message ||
 									"Your username or password is invalid"}
 							</p>

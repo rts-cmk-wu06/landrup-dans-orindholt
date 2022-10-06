@@ -35,13 +35,11 @@
   > **React Hook Form** formindsker mængden af kode nødvendig for en sikker og effektiv løsning til form validering. Med React Hook Form, I forhold til fx. Formik, har det færre dependencies, og laver færre rerenders, hvilket gør din app hurtigere og giver brugeren en bedre "user-experience".
 - **Fuse.js** - _Et hurtigt og simpelt fuzzy search bibliotek_
   > **Fuse.js** er et kraftfuld men lightweight fuzzy-search bibliotek, som giver mulighed for at implementere "approximate string matching" i fx. filtrering en søge funktion, et ellers svært emne at tilgå, hvis man skulle lave det fra bunden.
-  <!-- - **React Icons** - _En stor ikon samling fra de mest populære biblioteker_
-    > **React Icons**, er et ikon bibliotek der samler alle ikoner fra mange af ikoner fra de fleste og meste populære ikon biblioteker, som fx. FontAwesome, og Ionicons. Jeg har valgt at bruge React Icons, fordi det gør det hurtigere, og nemt at implementere ikoner. -->
-    <!-- - **SwiperJS** - _Et bibliotek til at lave øjeblikkeligt tilgængeligt og responsive sliders_
-      > **Swiper** er et udbredt og stort slider bibliotek som er god til at lave responsive, og lightweight slidere, nemt integereret med React. I forhold til fx. Splide (3,125 ⭐Github Stars) som er et alternativ til Swiper, er Swiper langt mere populært med (32,681 ⭐Github Stars), hurtigere, og har flere bidragydere, hvilket også gør kvaliteten af koden bedre. -->
 - **React Router Dom** - _Et lightweight, routing bibliotek_
   > XXXX
 - **React-Testing-Libary** - _XXXX_
+  > XXXX
+- **Toastify** - _XXXX_
   > XXXX
 
 ## Process
