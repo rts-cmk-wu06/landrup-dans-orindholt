@@ -37,9 +37,9 @@
   > **Fuse.js** er et kraftfuld men lightweight fuzzy-search bibliotek, som giver mulighed for at implementere "approximate string matching" i fx. filtrering en søge funktion, et ellers svært emne at tilgå, hvis man skulle lave det fra bunden.
 - **React Router Dom** - _Et lightweight, routing bibliotek_
   > XXXX
-- **React-Testing-Libary** - _XXXX_
-  > XXXX
 - **Toastify** - _XXXX_
+  > XXXX
+- **Vitest & Testing Library**
   > XXXX
 
 ## Process
@@ -82,6 +82,10 @@ Insomnia - XXXX
 ```js
 
 ```
+
+## Overvejelser
+
+- Hvorfor vite over cra?
 
 ## Forbedringer
 

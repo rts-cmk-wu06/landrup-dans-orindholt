@@ -22,7 +22,7 @@ const Activity = ({
 					/>
 					<figcaption className="absolute bottom-0 left-0 right-0 bg-pink bg-opacity-80 h-24 rounded-tr-[2.5rem] flex flex-col justify-center px-6">
 						<h3>{name}</h3>
-						<p>{acitvityAge(minAge, maxAge)}</p>
+						<p aria-label="age limit">{acitvityAge(minAge, maxAge)}</p>
 					</figcaption>
 				</figure>
 			</Link>
