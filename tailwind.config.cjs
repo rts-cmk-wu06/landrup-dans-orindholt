@@ -38,6 +38,7 @@ module.exports = {
 			purple: "#5E2E53",
 			pink: "#E1A1E9",
 			error: "#eb4236",
+			success: "#4bdb71",
 			transparent: "transparent",
 		},
 		fontSize: {

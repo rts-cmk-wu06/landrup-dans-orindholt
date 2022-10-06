@@ -25,17 +25,19 @@ const Search = () => {
 		<>
 			<Section>
 				<MainHeading />
-				<div className="mb-6">
-					<SearchField value={searchValue} setValue={setSearchValue} />
+				<SearchField value={searchValue} setValue={setSearchValue} />
+				<div className="mt-5">
+					{(searchValue && searchData.length) || !searchValue ? (
+						<ActivityList
+							data={Boolean(searchData.length) ? searchData : data}
+						/>
+					) : (
+						<p className="text-center">
+							Der blev ikke fundet nogle aktiviteter.
+							<br /> Prøv at søge efter noget andet.
+						</p>
+					)}
 				</div>
-				{(searchValue && searchData.length) || !searchValue ? (
-					<ActivityList data={Boolean(searchData.length) ? searchData : data} />
-				) : (
-					<p className="text-center">
-						Der blev ikke fundet nogle aktiviteter.
-						<br /> Prøv at søge efter noget andet.
-					</p>
-				)}
 			</Section>
 		</>
 	);

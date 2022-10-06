@@ -9,6 +9,7 @@ import Loader from "../components/Loader";
 import { userContext } from "../util/UserContext";
 import { useNavigate } from "react-router-dom";
 import LoginInput from "../components/Login/LoginInput";
+import { toast } from "react-toastify";
 
 const validationSchema = object({
 	username: string().required("You need to enter a username"),
@@ -17,7 +18,6 @@ const validationSchema = object({
 });
 
 const Login = () => {
-	const [formValidated, setFormValidated] = useState(false);
 	const navigate = useNavigate();
 	const {
 		userData: { set: setUserData },
@@ -43,15 +43,17 @@ const Login = () => {
 	});
 
 	const submitHandler = async formData => {
-		// Cookie Implementation
-		// ....
 		const { username, password, rememberMe } = formData;
 		if (rememberMe) console.log("Cookies!");
 		const userData = await attemptLogin({ username, password });
-		if (userData?.error && userData?.data) return;
+		if (userData?.error || !userData?.data) return;
+		document.activeElement.blur();
+		// Cookie Implementation
+		// ....
+		console.log(formData);
 		reset();
 		setUserData(userData.data);
-		setFormValidated(true);
+		toast.success(`Velkommen tilbage ${formData.username}!`);
 	};
 
 	const isInvalid = error?.response?.status == 401;
@@ -63,12 +65,6 @@ const Login = () => {
 				className="h-screen bg-cover bg-center grid place-content-center background-overlay"
 				style={{ backgroundImage: `url(${background})` }}
 			>
-				{formValidated && (
-					<p className="text-[#eb4236] absolute -bottom-4 font-semibold text-center">
-						{Object.values(errors)[0]?.message ||
-							"Your username or password is invalid"}
-					</p>
-				)}
 				<button
 					type="button"
 					className="absolute top-0 left-6 text-2xl"
@@ -78,11 +74,6 @@ const Login = () => {
 				</button>
 				<div className="z-10 flex flex-col items-center relative pb-10">
 					<h1 className="text-2xl mr-auto">Login</h1>
-					{formValidated && (
-						<p className="text-[#4bdb71] absolute -top-4 text-center text-shadow">
-							You are now logged in!
-						</p>
-					)}
 					<form
 						className="flex flex-col items-center gap-3"
 						onSubmit={handleSubmit(submitHandler)}

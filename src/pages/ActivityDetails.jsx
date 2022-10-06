@@ -62,7 +62,6 @@ const AcitivityDetail = () => {
 		description,
 	} = activityData;
 
-	console.log(userData?.age, minAge);
 	const isBelowAgeLimit = userData?.age < minAge;
 	const isOverAgeLimit = userData?.age > maxAge;
 
@@ -71,8 +70,6 @@ const AcitivityDetail = () => {
 	);
 
 	const dateConflict = userData?.activities.some(a => a.weekday === weekday);
-
-	console.log(userData);
 
 	const addToActivity = async () => {
 		if (isSignedUp) {
