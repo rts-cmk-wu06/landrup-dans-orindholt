@@ -18,8 +18,6 @@ const CalenderDetail = () => {
 		endpoint: `/api/v1/activities/${activityId}`,
 	});
 
-	// Conditional Data (based on user role)
-	// Seperate into component
 	if (!activityData) return <Loader />;
 
 	const isInstructor = userData?.role === "instructor";
@@ -28,7 +26,7 @@ const CalenderDetail = () => {
 		<Section>
 			<MainHeading text={activityData.name} />
 			<div className="py-2">
-				{!isInstructor ? (
+				{isInstructor ? (
 					<Roster
 						userId={userData.userId}
 						userToken={userData.token}
