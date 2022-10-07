@@ -14,7 +14,7 @@ const useFetch = ({
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const callback = async (body = {}) => {
+	const callFetch = async (body = {}) => {
 		setIsLoading(true);
 		return axios({
 			url: `${apiUrl}${endpoint}`,
@@ -40,11 +40,11 @@ const useFetch = ({
 
 	useEffect(() => {
 		if (fetchOnInit && !error) {
-			callback();
+			callFetch();
 		}
 	}, [endpoint, method]);
 
-	return { data, error, isLoading, callback };
+	return { data, error, isLoading, callFetch };
 };
 
 export default useFetch;

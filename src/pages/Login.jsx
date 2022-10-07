@@ -25,7 +25,7 @@ const Login = () => {
 	} = useContext(userContext);
 
 	const {
-		callback: attemptLogin,
+		callFetch: attemptLogin,
 		isLoading,
 		error,
 	} = useFetch({
@@ -106,7 +106,7 @@ const Login = () => {
 						</div>
 						<GenericButton text="Login" type="submit" className="mt-4" />
 						{(Boolean(Object.keys(errors).length) || isInvalid) && (
-							<p className="text-error absolute -bottom-4 text-center text-shadow">
+							<p className="text-error absolute -bottom-4 text-center bg-black px-1 py-1 bg-opacity-70 rounded-sm !leading-none">
 								{Object.values(errors)[0]?.message ||
 									"Your username or password is invalid"}
 							</p>

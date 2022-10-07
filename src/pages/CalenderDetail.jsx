@@ -1,43 +1,58 @@
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
-import Roster from "../components/Calender/Roster";
-import Section from "../components/Section";
+import { useContext, useEffect } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { userContext } from "../util/UserContext";
 import Loader from "../components/Loader";
-import Details from "../components/Calender/Details";
+import { useNavigate } from "react-router-dom";
 import MainHeading from "../components/MainHeading";
+import Section from "../components/Section";
 
-const CalenderDetail = () => {
+const CalenderRoster = () => {
 	const { id: activityId } = useParams();
+	const [searchParams] = useSearchParams();
+
+	const navigate = useNavigate();
 	const {
-		userData: { get: userData },
+		userData: { get: contextUserData },
 	} = useContext(userContext);
 
-	const { data: activityData } = useFetch({
-		endpoint: `/api/v1/activities/${activityId}`,
+	const { data: rosterData, callFetch: getRosterData } = useFetch({
+		endpoint: `/api/v1/users/${contextUserData?.userId}/roster/${activityId}`,
+		authToken: contextUserData?.token,
+		fetchOnInit: false,
 	});
 
-	if (!activityData) return <Loader />;
+	useEffect(() => {
+		if (!contextUserData) {
+			navigate("/login");
+			return;
+		}
+		const isInstructor = contextUserData?.role === "instructor";
+		if (!isInstructor) {
+			navigate(`/aktiviteter/${activityId}`);
+			return;
+		}
+		getRosterData();
+	}, []);
 
-	const isInstructor = userData?.role === "instructor";
+	if (!rosterData) return <Loader />;
 
 	return (
 		<Section>
-			<MainHeading text={activityData.name} />
-			<div className="py-2">
-				{isInstructor ? (
-					<Roster
-						userId={userData.userId}
-						userToken={userData.token}
-						activityId={activityId}
-					/>
-				) : (
-					<Details activity={activityData} />
-				)}
-			</div>
+			<MainHeading text={searchParams.get("name")} />
+			{rosterData.length ? (
+				<ul className="flex flex-col gap-2">
+					{rosterData.map(({ firstname, lastname }, i) => {
+						return <li key={i}>{`${firstname} ${lastname}`}</li>;
+					})}
+				</ul>
+			) : (
+				<p className="text-center py-10">
+					Denne aktivitet har desværre ingen medlemmere endnu.
+				</p>
+			)}
 		</Section>
 	);
 };
 
-export default CalenderDetail;
+export default CalenderRoster;
