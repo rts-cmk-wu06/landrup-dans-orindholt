@@ -17,19 +17,19 @@ const AcitivityDetail = () => {
 		endpoint: `/api/v1/activities/${activityId}`,
 	});
 
-	const { data: userData, callback: getUserData } = useFetch({
+	const { data: userData, callFetch: getUserData } = useFetch({
 		endpoint: `/api/v1/users/${contextUserData?.userId}`,
 		fetchOnInit: false,
 		authToken: contextUserData?.token,
 	});
 
-	const { callback: addUserToActivity } = useFetch({
+	const { callFetch: addUserToActivity } = useFetch({
 		endpoint: `/api/v1/users/${contextUserData?.userId}/activities/${activityId}`,
 		method: "post",
 		fetchOnInit: false,
 		authToken: contextUserData?.token,
 	});
-	const { callback: removeUserFromActivity } = useFetch({
+	const { callFetch: removeUserFromActivity } = useFetch({
 		endpoint: `/api/v1/users/${contextUserData?.userId}/activities/${activityId}`,
 		method: "delete",
 		fetchOnInit: false,

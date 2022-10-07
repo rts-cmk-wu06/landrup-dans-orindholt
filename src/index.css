@@ -9,8 +9,9 @@
 }
 
 @layer components {
-  .background-overlay {
-    @apply relative overflow-hidden after:h-[120vh] after:w-[115vw] after:rotate-[60deg] after:bg-purple after:bg-opacity-50 after:absolute after:-top-32 after:bottom-0 after:left-0 after:right-0
+  .background-overlay::after {
+    @apply bg-purple bg-opacity-50 absolute top-0 bottom-0 left-0 right-0 content-none;
+    clip-path: polygon(100% 0, 100% 70%, 0 95%, 0 25%);
   }
 }
 
