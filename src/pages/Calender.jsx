@@ -33,11 +33,15 @@ const Calender = () => {
 	return (
 		<Section>
 			<MainHeading />
-			<ul className="flex flex-col gap-4 mt-4">
-				{userData.activities.map(activity => {
-					return <CalenderItem activity={activity} key={activity.id} />;
-				})}
-			</ul>
+			{userData.activities.length ? (
+				<ul className="flex flex-col gap-4 mt-4">
+					{userData.activities.map(activity => {
+						return <CalenderItem activity={activity} key={activity.id} />;
+					})}
+				</ul>
+			) : (
+				<p className="text-center py-10">Du har intet på din kalender endnu!</p>
+			)}
 		</Section>
 	);
 };
