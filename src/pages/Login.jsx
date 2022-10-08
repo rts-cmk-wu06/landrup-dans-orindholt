@@ -101,7 +101,7 @@ const Login = () => {
 								id="remember-me"
 							/>
 							<label htmlFor="remember-me" className="leading-none select-none">
-								Remember me
+								Husk mig
 							</label>
 						</div>
 						<GenericButton text="Login" type="submit" className="mt-4" />
